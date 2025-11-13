@@ -49,6 +49,13 @@ class MockData {
         iconCodePoint: 0xe8d5, // Icons.view_list
         widgetCount: 7,
       ),
+      const WidgetCategoryModel(
+        id: 'text',
+        name: 'Text & Fonts',
+        description: 'Widgets de texto e tipografia',
+        iconCodePoint: 0xe264, // Icons.text_fields
+        widgetCount: 10,
+      ),
     ];
   }
 
@@ -2439,6 +2446,345 @@ class MockData {
         ],
         difficulty: 'intermediate',
         tags: ['cupertino', 'ios', 'navigation', 'bar'],
+      ),
+
+      // === TEXT & FONTS WIDGETS ===
+      const FlutterWidgetModel(
+        id: 'text',
+        name: 'Text',
+        description: 'Widget básico para exibir texto.',
+        categoryId: 'text',
+        codeExample: '''Text(
+  'Hello World',
+  style: TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue,
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'data',
+            type: 'String',
+            description: 'Texto a exibir',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'style',
+            type: 'TextStyle?',
+            description: 'Estilo do texto',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'textAlign',
+            type: 'TextAlign?',
+            description: 'Alinhamento do texto',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'typography', 'basic'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'richtext',
+        name: 'RichText',
+        description: 'Texto com múltiplos estilos.',
+        categoryId: 'text',
+        codeExample: '''RichText(
+  text: TextSpan(
+    text: 'Hello ',
+    style: TextStyle(color: Colors.black),
+    children: [
+      TextSpan(
+        text: 'bold',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      TextSpan(text: ' and '),
+      TextSpan(
+        text: 'red',
+        style: TextStyle(color: Colors.red),
+      ),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'text',
+            type: 'InlineSpan',
+            description: 'Conteúdo do texto',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'textAlign',
+            type: 'TextAlign',
+            description: 'Alinhamento do texto',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['text', 'rich', 'styled'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'selectabletext',
+        name: 'SelectableText',
+        description: 'Texto que pode ser selecionado e copiado.',
+        categoryId: 'text',
+        codeExample: '''SelectableText(
+  'This text can be selected',
+  style: TextStyle(fontSize: 18),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'data',
+            type: 'String',
+            description: 'Texto a exibir',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'style',
+            type: 'TextStyle?',
+            description: 'Estilo do texto',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'selectable', 'copy'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'defaulttextstyle',
+        name: 'DefaultTextStyle',
+        description: 'Define estilo padrão para textos filhos.',
+        categoryId: 'text',
+        codeExample: '''DefaultTextStyle(
+  style: TextStyle(
+    fontSize: 20,
+    color: Colors.blue,
+    fontWeight: FontWeight.bold,
+  ),
+  child: Column(
+    children: [
+      Text('Text 1'),
+      Text('Text 2'),
+      Text('Text 3'),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'style',
+            type: 'TextStyle',
+            description: 'Estilo padrão',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['text', 'style', 'default'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'animateddefaulttextstyle',
+        name: 'AnimatedDefaultTextStyle',
+        description: 'Estilo de texto padrão com animação.',
+        categoryId: 'text',
+        codeExample: '''AnimatedDefaultTextStyle(
+  duration: Duration(seconds: 1),
+  style: isBig ? TextStyle(
+    fontSize: 32,
+    color: Colors.blue,
+  ) : TextStyle(
+    fontSize: 16,
+    color: Colors.red,
+  ),
+  child: Text('Animated Text'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'style',
+            type: 'TextStyle',
+            description: 'Estilo do texto',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'duration',
+            type: 'Duration',
+            description: 'Duração da animação',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['text', 'animated', 'style'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'rotatedbox',
+        name: 'RotatedBox',
+        description: 'Rotaciona widget em quartos de volta.',
+        categoryId: 'text',
+        codeExample: '''RotatedBox(
+  quarterTurns: 1,
+  child: Text(
+    'Rotated',
+    style: TextStyle(fontSize: 24),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'quarterTurns',
+            type: 'int',
+            description: 'Número de quartos de volta (90° cada)',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget a rotacionar',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'rotation', 'transform'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'opacitytext',
+        name: 'Opacity',
+        description: 'Aplica transparência ao widget.',
+        categoryId: 'text',
+        codeExample: '''Opacity(
+  opacity: 0.5,
+  child: Text(
+    'Semi-transparent text',
+    style: TextStyle(fontSize: 20),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'opacity',
+            type: 'double',
+            description: 'Opacidade (0.0 a 1.0)',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'opacity', 'transparency'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'fittedboxtext',
+        name: 'FittedBox',
+        description: 'Escala e posiciona filho dentro dos limites.',
+        categoryId: 'text',
+        codeExample: '''FittedBox(
+  fit: BoxFit.contain,
+  child: Text(
+    'Fitted Text',
+    style: TextStyle(fontSize: 100),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'fit',
+            type: 'BoxFit',
+            description: 'Como ajustar o filho',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'fitted', 'scale'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'transformrotate',
+        name: 'Transform.rotate',
+        description: 'Rotaciona widget em qualquer ângulo.',
+        categoryId: 'text',
+        codeExample: '''Transform.rotate(
+  angle: 0.5,
+  child: Text(
+    'Rotated',
+    style: TextStyle(fontSize: 24),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'angle',
+            type: 'double',
+            description: 'Ângulo em radianos',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget a rotacionar',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['text', 'transform', 'rotation'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'directionality',
+        name: 'Directionality',
+        description: 'Define direção do texto (LTR/RTL).',
+        categoryId: 'text',
+        codeExample: '''Directionality(
+  textDirection: TextDirection.rtl,
+  child: Text('مرحبا بك'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'textDirection',
+            type: 'TextDirection',
+            description: 'Direção do texto',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['text', 'direction', 'rtl', 'i18n'],
       ),
     ];
   }

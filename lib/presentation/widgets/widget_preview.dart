@@ -1165,6 +1165,112 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      // Text & Fonts Widgets
+      case 'text':
+        return const Text(
+          'Hello World',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        );
+
+      case 'richtext':
+        return RichText(
+          text: TextSpan(
+            text: 'Hello ',
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+            children: const [
+              TextSpan(
+                text: 'bold',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              TextSpan(text: ' and '),
+              TextSpan(
+                text: 'colored',
+                style: TextStyle(color: Colors.blue),
+              ),
+            ],
+          ),
+        );
+
+      case 'selectabletext':
+        return const SelectableText(
+          'This text can be selected',
+          style: TextStyle(fontSize: 18),
+        );
+
+      case 'defaulttextstyle':
+        return const DefaultTextStyle(
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Text 1'),
+              SizedBox(height: 4),
+              Text('Text 2'),
+              SizedBox(height: 4),
+              Text('Text 3'),
+            ],
+          ),
+        );
+
+      case 'animateddefaulttextstyle':
+        return _AnimatedDefaultTextStyleDemo();
+
+      case 'rotatedbox':
+        return const RotatedBox(
+          quarterTurns: 1,
+          child: Text(
+            'Rotated 90°',
+            style: TextStyle(fontSize: 20),
+          ),
+        );
+
+      case 'opacitytext':
+        return const Opacity(
+          opacity: 0.5,
+          child: Text(
+            'Semi-transparent',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        );
+
+      case 'fittedboxtext':
+        return const SizedBox(
+          width: 100,
+          height: 50,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              'Fitted',
+              style: TextStyle(fontSize: 100),
+            ),
+          ),
+        );
+
+      case 'transformrotate':
+        return Transform.rotate(
+          angle: 0.3,
+          child: const Text(
+            'Rotated',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        );
+
+      case 'directionality':
+        return const Directionality(
+          textDirection: TextDirection.rtl,
+          child: Text(
+            'RTL Text →',
+            style: TextStyle(fontSize: 18),
+          ),
+        );
+
       default:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -1725,6 +1831,51 @@ class _CupertinoSegmentedControlDemoState
           });
         },
       ),
+    );
+  }
+}
+
+
+// AnimatedDefaultTextStyle Demo
+class _AnimatedDefaultTextStyleDemo extends StatefulWidget {
+  @override
+  State<_AnimatedDefaultTextStyleDemo> createState() =>
+      _AnimatedDefaultTextStyleDemoState();
+}
+
+class _AnimatedDefaultTextStyleDemoState
+    extends State<_AnimatedDefaultTextStyleDemo> {
+  bool _isBig = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      _toggleSize();
+    });
+  }
+
+  void _toggleSize() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (mounted) {
+        setState(() {
+          _isBig = !_isBig;
+        });
+        _toggleSize();
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedDefaultTextStyle(
+      duration: const Duration(milliseconds: 500),
+      style: TextStyle(
+        fontSize: _isBig ? 32 : 16,
+        color: _isBig ? Colors.blue : Colors.red,
+        fontWeight: FontWeight.bold,
+      ),
+      child: const Text('Animated'),
     );
   }
 }
