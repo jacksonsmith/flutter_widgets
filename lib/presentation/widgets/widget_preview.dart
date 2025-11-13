@@ -662,21 +662,71 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           dataRowMinHeight: 30,
           dataRowMaxHeight: 40,
           headingRowHeight: 35,
-          columns: const [
-            DataColumn(label: Text('Name', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
-            DataColumn(label: Text('Age', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+          columns: [
+            DataColumn(
+              label: Text(
+                'Name',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Age',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
           ],
-          rows: const [
+          rows: [
             DataRow(
               cells: [
-                DataCell(Text('John', style: TextStyle(fontSize: 10))),
-                DataCell(Text('25', style: TextStyle(fontSize: 10))),
+                DataCell(
+                  Text(
+                    'John',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    '25',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
               ],
             ),
             DataRow(
               cells: [
-                DataCell(Text('Jane', style: TextStyle(fontSize: 10))),
-                DataCell(Text('30', style: TextStyle(fontSize: 10))),
+                DataCell(
+                  Text(
+                    'Jane',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Text(
+                    '30',
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -695,15 +745,34 @@ class _WidgetPreviewState extends State<WidgetPreview> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 8),
-              Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2))),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
               ListTile(
-                leading: const Icon(Icons.share, size: 20),
-                title: const Text('Share', style: TextStyle(fontSize: 12)),
+                leading: Icon(Icons.share, size: 20, color: Theme.of(context).colorScheme.onSurface),
+                title: Text(
+                  'Share',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
                 onTap: () {},
               ),
               ListTile(
-                leading: const Icon(Icons.link, size: 20),
-                title: const Text('Copy link', style: TextStyle(fontSize: 12)),
+                leading: Icon(Icons.link, size: 20, color: Theme.of(context).colorScheme.onSurface),
+                title: Text(
+                  'Copy link',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
                 onTap: () {},
               ),
             ],
@@ -1399,8 +1468,14 @@ class _WidgetPreviewState extends State<WidgetPreview> {
             color: Colors.blue.withValues(alpha: 0.3),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Center(
-            child: Text('Blur', style: TextStyle(fontSize: 20)),
+          child: Center(
+            child: Text(
+              'Blur',
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
           ),
         );
 
@@ -1457,9 +1532,17 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         );
 
       case 'refreshindicator':
-        return const SizedBox(
+        return SizedBox(
           height: 120,
-          child: Center(child: Text('Pull to Refresh', style: TextStyle(fontSize: 16))),
+          child: Center(
+            child: Text(
+              'Pull to Refresh',
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ),
         );
 
       case 'scrollbar':
@@ -1532,7 +1615,13 @@ class _WidgetPreviewState extends State<WidgetPreview> {
             border: Border.all(color: Colors.orange),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Text('PopScope', style: TextStyle(fontSize: 16)),
+          child: Text(
+            'PopScope',
+            style: TextStyle(
+              fontSize: 16,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          ),
         );
 
       case 'listwheel':
@@ -1542,7 +1631,14 @@ class _WidgetPreviewState extends State<WidgetPreview> {
             itemExtent: 40,
             children: List.generate(
               10,
-              (index) => Center(child: Text('Item $index')),
+              (index) => Center(
+                child: Text(
+                  'Item $index',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
             ),
           ),
         );
@@ -2087,18 +2183,36 @@ class _CupertinoSegmentedControlDemoState
       width: 250,
       child: CupertinoSegmentedControl<int>(
         groupValue: _selectedSegment,
-        children: const {
+        children: {
           0: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Text('Option 1', style: TextStyle(fontSize: 12)),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text(
+              'Option 1',
+              style: TextStyle(
+                fontSize: 12,
+                color: CupertinoColors.label.resolveFrom(context),
+              ),
+            ),
           ),
           1: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Text('Option 2', style: TextStyle(fontSize: 12)),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text(
+              'Option 2',
+              style: TextStyle(
+                fontSize: 12,
+                color: CupertinoColors.label.resolveFrom(context),
+              ),
+            ),
           ),
           2: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12),
-            child: Text('Option 3', style: TextStyle(fontSize: 12)),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Text(
+              'Option 3',
+              style: TextStyle(
+                fontSize: 12,
+                color: CupertinoColors.label.resolveFrom(context),
+              ),
+            ),
           ),
         },
         onValueChanged: (value) {
