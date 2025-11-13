@@ -744,6 +744,15 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'dropdownbutton':
+        return _DropdownDemo();
+
+      case 'form':
+        return _FormDemo();
+
+      case 'datepicker':
+        return _DatePickerDemo();
+
       // Scrolling Widgets
       case 'listview':
       case 'list_view':
@@ -1092,16 +1101,153 @@ class _RadioDemoState extends State<_RadioDemo> {
           _selectedValue = value!;
         });
       },
-      child: const Row(
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Radio<int>(value: 1),
-          Text('Option 1'),
-          SizedBox(width: 16),
-          Radio<int>(value: 2),
-          Text('Option 2'),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Radio<int>(value: 1),
+              Text('Option 1'),
+            ],
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Radio<int>(value: 2),
+              Text('Option 2'),
+            ],
+          ),
         ],
       ),
+    );
+  }
+}
+
+// Dropdown Demo
+class _DropdownDemo extends StatefulWidget {
+  @override
+  State<_DropdownDemo> createState() => _DropdownDemoState();
+}
+
+class _DropdownDemoState extends State<_DropdownDemo> {
+  String _selectedValue = 'Option 1';
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 200,
+      child: DropdownButton<String>(
+        value: _selectedValue,
+        isExpanded: true,
+        items: const [
+          DropdownMenuItem(value: 'Option 1', child: Text('Option 1')),
+          DropdownMenuItem(value: 'Option 2', child: Text('Option 2')),
+          DropdownMenuItem(value: 'Option 3', child: Text('Option 3')),
+        ],
+        onChanged: (value) {
+          setState(() {
+            _selectedValue = value!;
+          });
+        },
+      ),
+    );
+  }
+}
+
+// Form Demo
+class _FormDemo extends StatefulWidget {
+  @override
+  State<_FormDemo> createState() => _FormDemoState();
+}
+
+class _FormDemoState extends State<_FormDemo> {
+  final _formKey = GlobalKey<FormState>();
+  final _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 250,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              controller: _textController,
+              decoration: const InputDecoration(
+                labelText: 'Name',
+                border: OutlineInputBorder(),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Required';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () {
+                _formKey.currentState!.validate();
+              },
+              child: const Text('Submit'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// DatePicker Demo
+class _DatePickerDemo extends StatefulWidget {
+  @override
+  State<_DatePickerDemo> createState() => _DatePickerDemoState();
+}
+
+class _DatePickerDemoState extends State<_DatePickerDemo> {
+  DateTime? _selectedDate;
+
+  Future<void> _selectDate(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null && picked != _selectedDate) {
+      setState(() {
+        _selectedDate = picked;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ElevatedButton.icon(
+          onPressed: () => _selectDate(context),
+          icon: const Icon(Icons.calendar_today),
+          label: const Text('Select Date'),
+        ),
+        if (_selectedDate != null) ...[
+          const SizedBox(height: 12),
+          Text(
+            '${_selectedDate!.day}/${_selectedDate!.month}/${_selectedDate!.year}',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ],
+      ],
     );
   }
 }

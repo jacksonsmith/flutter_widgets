@@ -33,7 +33,7 @@ class MockData {
         name: 'Input',
         description: 'Widgets de entrada de dados',
         iconCodePoint: 0xe23c, // Icons.input
-        widgetCount: 6,
+        widgetCount: 8,
       ),
       const WidgetCategoryModel(
         id: 'animation',
@@ -1411,6 +1411,233 @@ class MockData {
         ],
         difficulty: 'beginner',
         tags: ['input', 'switch', 'toggle'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'radio',
+        name: 'Radio',
+        description: 'Botão de seleção única em um grupo.',
+        categoryId: 'input',
+        codeExample: '''Radio<String>(
+  value: 'option1',
+  groupValue: selectedOption,
+  onChanged: (String? value) {
+    setState(() {
+      selectedOption = value;
+    });
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'T',
+            description: 'Valor deste botão',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'groupValue',
+            type: 'T?',
+            description: 'Valor selecionado do grupo',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onChanged',
+            type: 'ValueChanged<T?>?',
+            description: 'Callback quando muda',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['input', 'radio', 'selection', 'group'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'slider',
+        name: 'Slider',
+        description: 'Controle deslizante para selecionar um valor.',
+        categoryId: 'input',
+        codeExample: '''Slider(
+  value: sliderValue,
+  min: 0.0,
+  max: 100.0,
+  divisions: 10,
+  label: sliderValue.round().toString(),
+  onChanged: (double value) {
+    setState(() {
+      sliderValue = value;
+    });
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'double',
+            description: 'Valor atual',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onChanged',
+            type: 'ValueChanged<double>?',
+            description: 'Callback quando muda',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'min',
+            type: 'double',
+            description: 'Valor mínimo',
+            isRequired: false,
+            defaultValue: '0.0',
+          ),
+          WidgetPropertyModel(
+            name: 'max',
+            type: 'double',
+            description: 'Valor máximo',
+            isRequired: false,
+            defaultValue: '1.0',
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['input', 'slider', 'range'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'dropdownbutton',
+        name: 'DropdownButton',
+        description: 'Botão que abre um menu dropdown.',
+        categoryId: 'input',
+        codeExample: '''DropdownButton<String>(
+  value: selectedValue,
+  items: ['Option 1', 'Option 2', 'Option 3']
+      .map((String value) {
+    return DropdownMenuItem<String>(
+      value: value,
+      child: Text(value),
+    );
+  }).toList(),
+  onChanged: (String? newValue) {
+    setState(() {
+      selectedValue = newValue!;
+    });
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'T?',
+            description: 'Valor selecionado',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'items',
+            type: 'List<DropdownMenuItem<T>>?',
+            description: 'Itens do menu',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onChanged',
+            type: 'ValueChanged<T?>?',
+            description: 'Callback quando muda',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['input', 'dropdown', 'menu', 'select'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'form',
+        name: 'Form',
+        description: 'Container para agrupar e validar campos de formulário.',
+        categoryId: 'input',
+        codeExample: '''Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      TextFormField(
+        decoration: InputDecoration(labelText: 'Name'),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
+      ),
+      ElevatedButton(
+        onPressed: () {
+          if (_formKey.currentState!.validate()) {
+            // Process data
+          }
+        },
+        child: Text('Submit'),
+      ),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'key',
+            type: 'GlobalKey<FormState>?',
+            description: 'Chave para acessar o Form',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Campos do formulário',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['input', 'form', 'validation'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'datepicker',
+        name: 'DatePicker',
+        description: 'Seletor de data (via showDatePicker).',
+        categoryId: 'input',
+        codeExample: '''ElevatedButton(
+  onPressed: () async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) {
+      // Use the selected date
+      print('Selected: \$picked');
+    }
+  },
+  child: Text('Pick Date'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'initialDate',
+            type: 'DateTime',
+            description: 'Data inicial',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'firstDate',
+            type: 'DateTime',
+            description: 'Data mínima',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'lastDate',
+            type: 'DateTime',
+            description: 'Data máxima',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['input', 'date', 'picker', 'calendar'],
       ),
 
       // === SCROLLING WIDGETS ===
