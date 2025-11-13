@@ -181,9 +181,17 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         return Container(
           width: 200,
           height: 120,
-          color: Colors.grey[200],
-          child: const Center(
-            child: Icon(Icons.center_focus_strong, size: 48, color: Colors.blue),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).dividerColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Center(
+            child: Icon(
+              Icons.center_focus_strong,
+              size: 48,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           ),
         );
 
@@ -263,6 +271,9 @@ class _WidgetPreviewState extends State<WidgetPreview> {
       case 'text_button':
         return TextButton(
           onPressed: () {},
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.blue,
+          ),
           child: const Text('Text Button'),
         );
 
@@ -350,14 +361,33 @@ class _WidgetPreviewState extends State<WidgetPreview> {
       // Scrolling Widgets
       case 'listview':
       case 'list_view':
-        return SizedBox(
+        return Container(
           height: 200,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: Theme.of(context).dividerColor,
+            ),
+          ),
           child: ListView.builder(
             itemCount: 5,
             itemBuilder: (context, index) => ListTile(
-              leading: CircleAvatar(child: Text('${index + 1}')),
-              title: Text('List Item ${index + 1}'),
-              subtitle: const Text('Subtitle'),
+              leading: CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                child: Text('${index + 1}'),
+              ),
+              title: Text(
+                'List Item ${index + 1}',
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ),
+              subtitle: Text(
+                'Subtitle',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+              ),
             ),
           ),
         );
@@ -386,18 +416,46 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         );
 
       case 'single_child_scroll_view':
-        return SizedBox(
+        return Container(
           height: 150,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Theme.of(context).dividerColor),
+          ),
           child: SingleChildScrollView(
             child: Column(
               children: List.generate(
                 10,
-                (index) => Container(
-                  margin: const EdgeInsets.only(bottom: 8),
-                  padding: const EdgeInsets.all(16),
-                  color: Colors.blue[100 * ((index % 9) + 1)],
-                  child: Text('Scrollable Item ${index + 1}'),
-                ),
+                (index) {
+                  final colors = [
+                    Colors.red,
+                    Colors.orange,
+                    Colors.amber,
+                    Colors.green,
+                    Colors.teal,
+                    Colors.blue,
+                    Colors.indigo,
+                    Colors.purple,
+                    Colors.pink,
+                    Colors.cyan,
+                  ];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: colors[index].withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      'Scrollable Item ${index + 1}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
