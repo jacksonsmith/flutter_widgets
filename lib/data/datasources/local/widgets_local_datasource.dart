@@ -25,13 +25,13 @@ class WidgetsLocalDataSourceImpl implements WidgetsLocalDataSource {
   @override
   Future<List<WidgetCategoryModel>> getCategories() async {
     // Simular delay de rede
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future<void>.delayed(const Duration(milliseconds: 100));
     return MockData.getCategories();
   }
 
   @override
   Future<List<FlutterWidgetModel>> getWidgets() async {
-    await Future.delayed(const Duration(milliseconds: 150));
+    await Future<void>.delayed(const Duration(milliseconds: 150));
     final widgets = MockData.getWidgets();
     final favoriteIds = await getFavoriteIds();
 
@@ -46,14 +46,14 @@ class WidgetsLocalDataSourceImpl implements WidgetsLocalDataSource {
   Future<List<FlutterWidgetModel>> getWidgetsByCategory(
     String categoryId,
   ) async {
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future<void>.delayed(const Duration(milliseconds: 100));
     final allWidgets = await getWidgets();
     return allWidgets.where((w) => w.categoryId == categoryId).toList();
   }
 
   @override
   Future<FlutterWidgetModel?> getWidgetById(String id) async {
-    await Future.delayed(const Duration(milliseconds: 50));
+    await Future<void>.delayed(const Duration(milliseconds: 50));
     final allWidgets = await getWidgets();
     try {
       return allWidgets.firstWhere((w) => w.id == id);
