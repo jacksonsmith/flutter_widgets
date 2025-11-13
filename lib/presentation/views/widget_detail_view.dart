@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_widgets/core/constants/app_strings.dart';
 import 'package:flutter_widgets/core/di/injection.dart';
 import 'package:flutter_widgets/presentation/viewmodels/widget_detail_viewmodel.dart';
+import 'package:flutter_widgets/presentation/widgets/widget_preview.dart';
 import 'package:provider/provider.dart';
 
 class WidgetDetailView extends StatelessWidget {
@@ -62,25 +63,7 @@ class WidgetDetailView extends StatelessWidget {
               body: TabBarView(
                 children: [
                   // Preview Tab
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            widget.description,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          const SizedBox(height: 16),
-                          Chip(
-                            label: Text(widget.difficulty.displayName),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  WidgetPreview(widgetEntity: widget),
                   // Code Tab
                   SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
