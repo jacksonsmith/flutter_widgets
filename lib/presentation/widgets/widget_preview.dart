@@ -883,6 +883,118 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'pageview':
+        return SizedBox(
+          height: 200,
+          child: PageView(
+            children: const [
+              ColoredBox(
+                color: Colors.red,
+                child: Center(
+                  child: Text('Page 1', style: TextStyle(color: Colors.white, fontSize: 24)),
+                ),
+              ),
+              ColoredBox(
+                color: Colors.green,
+                child: Center(
+                  child: Text('Page 2', style: TextStyle(color: Colors.white, fontSize: 24)),
+                ),
+              ),
+              ColoredBox(
+                color: Colors.blue,
+                child: Center(
+                  child: Text('Page 3', style: TextStyle(color: Colors.white, fontSize: 24)),
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 'singlechildscrollview':
+        return Container(
+          height: 150,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Theme.of(context).dividerColor),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: List.generate(
+                8,
+                (index) {
+                  final colors = [
+                    Colors.red,
+                    Colors.orange,
+                    Colors.green,
+                    Colors.blue,
+                    Colors.purple,
+                    Colors.pink,
+                    Colors.teal,
+                    Colors.cyan,
+                  ];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: colors[index].withValues(alpha: 0.3),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      'Item ${index + 1}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+
+      case 'customscrollview':
+        return SizedBox(
+          height: 250,
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                floating: true,
+                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                title: Text(
+                  'Custom Scroll',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                    fontSize: 14,
+                  ),
+                ),
+                expandedHeight: 80,
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: Theme.of(context).dividerColor),
+                    ),
+                    child: Text(
+                      'Sliver Item ${index + 1}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                  ),
+                  childCount: 15,
+                ),
+              ),
+            ],
+          ),
+        );
+
       // Animation Widgets
       case 'animatedcontainer':
       case 'animated_container':

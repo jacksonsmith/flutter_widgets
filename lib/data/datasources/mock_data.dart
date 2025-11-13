@@ -47,7 +47,7 @@ class MockData {
         name: 'Scrolling',
         description: 'Widgets de rolagem',
         iconCodePoint: 0xe8d5, // Icons.view_list
-        widgetCount: 4,
+        widgetCount: 7,
       ),
     ];
   }
@@ -1710,6 +1710,133 @@ class MockData {
         ],
         difficulty: 'intermediate',
         tags: ['scrolling', 'grid', 'layout'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'pageview',
+        name: 'PageView',
+        description: 'Visualização de páginas deslizáveis.',
+        categoryId: 'scrolling',
+        codeExample: '''PageView(
+  children: [
+    Container(
+      color: Colors.red,
+      child: Center(child: Text('Page 1')),
+    ),
+    Container(
+      color: Colors.blue,
+      child: Center(child: Text('Page 2')),
+    ),
+    Container(
+      color: Colors.green,
+      child: Center(child: Text('Page 3')),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'children',
+            type: 'List<Widget>',
+            description: 'Páginas a exibir',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'controller',
+            type: 'PageController?',
+            description: 'Controlador de página',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'scrollDirection',
+            type: 'Axis',
+            description: 'Direção de rolagem (horizontal/vertical)',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['scrolling', 'pages', 'swipe'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'singlechildscrollview',
+        name: 'SingleChildScrollView',
+        description: 'Widget rolável com um único filho.',
+        categoryId: 'scrolling',
+        codeExample: '''SingleChildScrollView(
+  child: Column(
+    children: [
+      Container(height: 200, color: Colors.red),
+      Container(height: 200, color: Colors.blue),
+      Container(height: 200, color: Colors.green),
+      Container(height: 200, color: Colors.orange),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget filho',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'scrollDirection',
+            type: 'Axis',
+            description: 'Direção de rolagem',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'padding',
+            type: 'EdgeInsetsGeometry?',
+            description: 'Espaçamento interno',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['scrolling', 'scroll', 'single'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'customscrollview',
+        name: 'CustomScrollView',
+        description: 'Scroll customizado com slivers.',
+        categoryId: 'scrolling',
+        codeExample: '''CustomScrollView(
+  slivers: [
+    SliverAppBar(
+      floating: true,
+      title: Text('Custom Scroll'),
+      expandedHeight: 200,
+    ),
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) => ListTile(
+          title: Text('Item \$index'),
+        ),
+        childCount: 20,
+      ),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'slivers',
+            type: 'List<Widget>',
+            description: 'Lista de widgets sliver',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'scrollDirection',
+            type: 'Axis',
+            description: 'Direção de rolagem',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['scrolling', 'sliver', 'custom'],
       ),
 
       // === ANIMATION WIDGETS ===
