@@ -40,7 +40,7 @@ class MockData {
         name: 'Animation',
         description: 'Widgets animados',
         iconCodePoint: 0xe1ba, // Icons.animation
-        widgetCount: 5,
+        widgetCount: 11,
       ),
       const WidgetCategoryModel(
         id: 'scrolling',
@@ -1897,6 +1897,231 @@ class MockData {
         ],
         difficulty: 'intermediate',
         tags: ['animation', 'hero', 'navigation'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'animatedbuilder',
+        name: 'AnimatedBuilder',
+        description: 'Construtor de widget animado customizado.',
+        categoryId: 'animation',
+        codeExample: '''AnimatedBuilder(
+  animation: animationController,
+  builder: (context, child) {
+    return Transform.rotate(
+      angle: animationController.value * 2 * pi,
+      child: child,
+    );
+  },
+  child: Icon(Icons.refresh, size: 50),
+)''',
+        imports: ['package:flutter/material.dart', 'dart:math'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'animation',
+            type: 'Listenable',
+            description: 'Animação a observar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'builder',
+            type: 'TransitionBuilder',
+            description: 'Construtor do widget',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget filho não recontruído',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['animation', 'builder', 'custom'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'animatedlist',
+        name: 'AnimatedList',
+        description: 'Lista que anima inserções e remoções.',
+        categoryId: 'animation',
+        codeExample: '''AnimatedList(
+  key: listKey,
+  initialItemCount: items.length,
+  itemBuilder: (context, index, animation) {
+    return SizeTransition(
+      sizeFactor: animation,
+      child: ListTile(
+        title: Text(items[index]),
+      ),
+    );
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'itemBuilder',
+            type: 'AnimatedItemBuilder',
+            description: 'Construtor de item',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'initialItemCount',
+            type: 'int',
+            description: 'Número inicial de itens',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['animation', 'list', 'transition'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'fadeinimage',
+        name: 'FadeInImage',
+        description: 'Imagem que aparece com fade.',
+        categoryId: 'animation',
+        codeExample: '''FadeInImage(
+  placeholder: AssetImage('assets/placeholder.png'),
+  image: NetworkImage('https://example.com/image.jpg'),
+  fadeInDuration: Duration(milliseconds: 500),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'placeholder',
+            type: 'ImageProvider',
+            description: 'Imagem placeholder',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'image',
+            type: 'ImageProvider',
+            description: 'Imagem final',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'fadeInDuration',
+            type: 'Duration',
+            description: 'Duração do fade',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['animation', 'image', 'fade'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'scaletransition',
+        name: 'ScaleTransition',
+        description: 'Transição de escala animada.',
+        categoryId: 'animation',
+        codeExample: '''ScaleTransition(
+  scale: animation,
+  child: Container(
+    width: 100,
+    height: 100,
+    color: Colors.blue,
+    child: Icon(Icons.star),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'scale',
+            type: 'Animation<double>',
+            description: 'Animação de escala',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget a escalar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'alignment',
+            type: 'Alignment',
+            description: 'Ponto de origem da escala',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['animation', 'scale', 'transition'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'slidetransition',
+        name: 'SlideTransition',
+        description: 'Transição de deslizamento animada.',
+        categoryId: 'animation',
+        codeExample: '''SlideTransition(
+  position: Tween<Offset>(
+    begin: Offset(-1, 0),
+    end: Offset.zero,
+  ).animate(animation),
+  child: Container(
+    width: 200,
+    height: 100,
+    color: Colors.green,
+    child: Center(child: Text('Slide')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'position',
+            type: 'Animation<Offset>',
+            description: 'Animação de posição',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget a deslizar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['animation', 'slide', 'transition'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'rotationtransition',
+        name: 'RotationTransition',
+        description: 'Transição de rotação animada.',
+        categoryId: 'animation',
+        codeExample: '''RotationTransition(
+  turns: animation,
+  child: Container(
+    width: 100,
+    height: 100,
+    color: Colors.orange,
+    child: Icon(Icons.refresh, size: 50),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'turns',
+            type: 'Animation<double>',
+            description: 'Animação de rotação (0-1 = 0-360°)',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget a rotacionar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'alignment',
+            type: 'Alignment',
+            description: 'Ponto de rotação',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['animation', 'rotation', 'transition'],
       ),
 
       // === CUPERTINO WIDGETS ===

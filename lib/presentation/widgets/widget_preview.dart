@@ -1019,6 +1019,33 @@ class _WidgetPreviewState extends State<WidgetPreview> {
       case 'fade_transition':
         return _FadeTransitionDemo();
 
+      case 'animatedbuilder':
+        return _AnimatedBuilderDemo();
+
+      case 'animatedlist':
+        return _AnimatedListDemo();
+
+      case 'fadeinimage':
+        return Container(
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            border: Border.all(color: Theme.of(context).dividerColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(Icons.image, size: 64, color: Colors.grey),
+        );
+
+      case 'scaletransition':
+        return _ScaleTransitionDemo();
+
+      case 'slidetransition':
+        return _SlideTransitionDemo();
+
+      case 'rotationtransition':
+        return _RotationTransitionDemo();
+
       // Cupertino Widgets
       case 'cupertinobutton':
       case 'cupertino_button':
@@ -1360,6 +1387,213 @@ class _DatePickerDemoState extends State<_DatePickerDemo> {
           ),
         ],
       ],
+    );
+  }
+}
+
+// AnimatedBuilder Demo
+class _AnimatedBuilderDemo extends StatefulWidget {
+  @override
+  State<_AnimatedBuilderDemo> createState() => _AnimatedBuilderDemoState();
+}
+
+class _AnimatedBuilderDemoState extends State<_AnimatedBuilderDemo>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: _controller.value * 2 * 3.14159,
+          child: child,
+        );
+      },
+      child: const Icon(Icons.refresh, size: 50, color: Colors.blue),
+    );
+  }
+}
+
+// AnimatedList Demo
+class _AnimatedListDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 150,
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Theme.of(context).dividerColor),
+      ),
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) => ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.primaries[index % Colors.primaries.length],
+            child: Text('${index + 1}'),
+          ),
+          title: Text(
+            'Item ${index + 1}',
+            style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// ScaleTransition Demo
+class _ScaleTransitionDemo extends StatefulWidget {
+  @override
+  State<_ScaleTransitionDemo> createState() => _ScaleTransitionDemoState();
+}
+
+class _ScaleTransitionDemoState extends State<_ScaleTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat(reverse: true);
+    _animation = Tween<double>(begin: 0.5, end: 1).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Icon(Icons.star, color: Colors.white, size: 48),
+      ),
+    );
+  }
+}
+
+// SlideTransition Demo
+class _SlideTransitionDemo extends StatefulWidget {
+  @override
+  State<_SlideTransitionDemo> createState() => _SlideTransitionDemoState();
+}
+
+class _SlideTransitionDemoState extends State<_SlideTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat(reverse: true);
+    _animation = Tween<Offset>(
+      begin: const Offset(-0.3, 0),
+      end: const Offset(0.3, 0),
+    ).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _animation,
+      child: Container(
+        width: 120,
+        height: 80,
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Center(
+          child: Text(
+            'Slide',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// RotationTransition Demo
+class _RotationTransitionDemo extends StatefulWidget {
+  @override
+  State<_RotationTransitionDemo> createState() =>
+      _RotationTransitionDemoState();
+}
+
+class _RotationTransitionDemoState extends State<_RotationTransitionDemo>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RotationTransition(
+      turns: _controller,
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Icon(Icons.refresh, color: Colors.white, size: 48),
+      ),
     );
   }
 }
