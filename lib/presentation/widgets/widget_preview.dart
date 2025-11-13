@@ -259,6 +259,175 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'align':
+        return Container(
+          width: 200,
+          height: 150,
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            border: Border.all(color: Theme.of(context).dividerColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Icon(
+              Icons.star,
+              size: 40,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
+        );
+
+      case 'aspectratio':
+        return AspectRatio(
+          aspectRatio: 16 / 9,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Center(
+              child: Text(
+                '16:9',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        );
+
+      case 'constrainedbox':
+        return ConstrainedBox(
+          constraints: const BoxConstraints(
+            minWidth: 100,
+            maxWidth: 150,
+            minHeight: 80,
+            maxHeight: 100,
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.amber,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Center(
+              child: Text(
+                'Constrained',
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+        );
+
+      case 'fittedbox':
+        return SizedBox(
+          width: 150,
+          height: 80,
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Text(
+              'FittedBox',
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ),
+        );
+
+      case 'flexible':
+        return SizedBox(
+          width: 200,
+          height: 60,
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                color: Colors.red,
+                child: const Center(
+                  child: Text('Fixed', style: TextStyle(fontSize: 10, color: Colors.white)),
+                ),
+              ),
+              const Flexible(
+                flex: 1,
+                child: ColoredBox(
+                  color: Colors.orange,
+                  child: Center(
+                    child: Text('Flex 1', style: TextStyle(fontSize: 10, color: Colors.white)),
+                  ),
+                ),
+              ),
+              const Flexible(
+                flex: 2,
+                child: ColoredBox(
+                  color: Colors.blue,
+                  child: Center(
+                    child: Text('Flex 2', style: TextStyle(fontSize: 10, color: Colors.white)),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 'wrap':
+        return Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: [
+            Chip(
+              label: const Text('Tag 1', style: TextStyle(fontSize: 10)),
+              backgroundColor: Colors.blue[100],
+            ),
+            Chip(
+              label: const Text('Tag 2', style: TextStyle(fontSize: 10)),
+              backgroundColor: Colors.green[100],
+            ),
+            Chip(
+              label: const Text('Tag 3', style: TextStyle(fontSize: 10)),
+              backgroundColor: Colors.orange[100],
+            ),
+            Chip(
+              label: const Text('Tag 4', style: TextStyle(fontSize: 10)),
+              backgroundColor: Colors.purple[100],
+            ),
+            Chip(
+              label: const Text('Tag 5', style: TextStyle(fontSize: 10)),
+              backgroundColor: Colors.pink[100],
+            ),
+          ],
+        );
+
+      case 'baseline':
+        return Container(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                'Hello',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'World',
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        );
+
       // Material Widgets
       case 'elevatedbutton':
       case 'elevated_button':

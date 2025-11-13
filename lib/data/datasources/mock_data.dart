@@ -12,7 +12,7 @@ class MockData {
         name: 'Layout',
         description: 'Widgets de estrutura e posicionamento',
         iconCodePoint: 0xe8f1, // Icons.dashboard
-        widgetCount: 10,
+        widgetCount: 15,
       ),
       const WidgetCategoryModel(
         id: 'material',
@@ -328,6 +328,283 @@ class MockData {
         ],
         difficulty: 'beginner',
         tags: ['layout', 'size', 'box'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'align',
+        name: 'Align',
+        description: 'Alinha um widget filho em uma posição específica.',
+        categoryId: 'layout',
+        codeExample: '''Align(
+  alignment: Alignment.topRight,
+  child: Icon(Icons.star, size: 50),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'alignment',
+            type: 'AlignmentGeometry',
+            description: 'Como alinhar o filho',
+            isRequired: true,
+            defaultValue: 'Alignment.center',
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget a ser alinhado',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['layout', 'align', 'position'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'aspectratio',
+        name: 'AspectRatio',
+        description: 'Widget que mantém uma proporção de aspecto específica.',
+        categoryId: 'layout',
+        codeExample: '''AspectRatio(
+  aspectRatio: 16 / 9,
+  child: Container(
+    color: Colors.blue,
+    child: Center(child: Text('16:9')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'aspectRatio',
+            type: 'double',
+            description: 'Proporção largura/altura',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['layout', 'aspect', 'ratio', 'proportion'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'constrainedbox',
+        name: 'ConstrainedBox',
+        description: 'Aplica constraints adicionais ao seu filho.',
+        categoryId: 'layout',
+        codeExample: '''ConstrainedBox(
+  constraints: BoxConstraints(
+    minWidth: 100,
+    maxWidth: 200,
+    minHeight: 50,
+    maxHeight: 100,
+  ),
+  child: Container(color: Colors.amber),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'constraints',
+            type: 'BoxConstraints',
+            description: 'Constraints a aplicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['layout', 'constraints', 'size', 'bounds'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'fittedbox',
+        name: 'FittedBox',
+        description: 'Escala e posiciona seu filho dentro de si mesmo.',
+        categoryId: 'layout',
+        codeExample: '''FittedBox(
+  fit: BoxFit.contain,
+  child: Text(
+    'Large Text',
+    style: TextStyle(fontSize: 100),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'fit',
+            type: 'BoxFit',
+            description: 'Como escalar o filho',
+            isRequired: false,
+            defaultValue: 'BoxFit.contain',
+          ),
+          WidgetPropertyModel(
+            name: 'alignment',
+            type: 'AlignmentGeometry',
+            description: 'Como alinhar o filho',
+            isRequired: false,
+            defaultValue: 'Alignment.center',
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['layout', 'scale', 'fit', 'resize'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'flexible',
+        name: 'Flexible',
+        description: 'Controla como um filho de Row, Column ou Flex se flexiona.',
+        categoryId: 'layout',
+        codeExample: '''Row(
+  children: [
+    Flexible(
+      flex: 1,
+      fit: FlexFit.tight,
+      child: Container(
+        color: Colors.red,
+        height: 50,
+      ),
+    ),
+    Flexible(
+      flex: 2,
+      child: Container(
+        color: Colors.blue,
+        height: 50,
+      ),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'flex',
+            type: 'int',
+            description: 'Fator de flex',
+            isRequired: false,
+            defaultValue: '1',
+          ),
+          WidgetPropertyModel(
+            name: 'fit',
+            type: 'FlexFit',
+            description: 'Como o filho se ajusta',
+            isRequired: false,
+            defaultValue: 'FlexFit.loose',
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['layout', 'flex', 'flexible', 'row', 'column'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'wrap',
+        name: 'Wrap',
+        description: 'Layout que quebra children em múltiplas linhas.',
+        categoryId: 'layout',
+        codeExample: '''Wrap(
+  spacing: 8.0,
+  runSpacing: 4.0,
+  children: [
+    Chip(label: Text('Tag 1')),
+    Chip(label: Text('Tag 2')),
+    Chip(label: Text('Tag 3')),
+    Chip(label: Text('Tag 4')),
+    Chip(label: Text('Tag 5')),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'spacing',
+            type: 'double',
+            description: 'Espaço horizontal entre children',
+            isRequired: false,
+            defaultValue: '0.0',
+          ),
+          WidgetPropertyModel(
+            name: 'runSpacing',
+            type: 'double',
+            description: 'Espaço vertical entre runs',
+            isRequired: false,
+            defaultValue: '0.0',
+          ),
+          WidgetPropertyModel(
+            name: 'direction',
+            type: 'Axis',
+            description: 'Direção do layout',
+            isRequired: false,
+            defaultValue: 'Axis.horizontal',
+          ),
+          WidgetPropertyModel(
+            name: 'children',
+            type: 'List<Widget>',
+            description: 'Widgets filhos',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['layout', 'wrap', 'flow', 'multiline'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'baseline',
+        name: 'Baseline',
+        description: 'Posiciona seu filho de acordo com a baseline do filho.',
+        categoryId: 'layout',
+        codeExample: '''Row(
+  children: [
+    Baseline(
+      baseline: 30.0,
+      baselineType: TextBaseline.alphabetic,
+      child: Text('Hello', style: TextStyle(fontSize: 20)),
+    ),
+    Baseline(
+      baseline: 30.0,
+      baselineType: TextBaseline.alphabetic,
+      child: Text('World', style: TextStyle(fontSize: 40)),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'baseline',
+            type: 'double',
+            description: 'Distância da baseline ao topo',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'baselineType',
+            type: 'TextBaseline',
+            description: 'Tipo de baseline',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget filho',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['layout', 'baseline', 'text', 'alignment'],
       ),
 
       // === MATERIAL DESIGN WIDGETS ===
