@@ -8,6 +8,10 @@ linter:
     eol_at_end_of_file: false
     directives_ordering: false
     avoid_redundant_argument_values: false
+    leading_newlines_in_multiline_strings: false
+    use_raw_strings: false
+    sort_constructors_first: false
+    unnecessary_lambdas: false
 
     # Manter boas práticas essenciais
     prefer_const_constructors: true

@@ -13,11 +13,11 @@ void main() {
       widgetCount: 10,
     );
 
-    final tEntity = WidgetCategory(
+    const tEntity = WidgetCategory(
       id: 'layout',
       name: 'Layout',
       description: 'Layout widgets',
-      icon: const IconData(0xe8f1, fontFamily: 'MaterialIcons'),
+      icon: IconData(0xe8f1, fontFamily: 'MaterialIcons'),
       widgetCount: 10,
     );
 
