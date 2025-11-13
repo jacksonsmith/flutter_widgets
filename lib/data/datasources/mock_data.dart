@@ -26,7 +26,7 @@ class MockData {
         name: 'Cupertino',
         description: 'Widgets estilo iOS',
         iconCodePoint: 0xe318, // Icons.phone_iphone
-        widgetCount: 5,
+        widgetCount: 11,
       ),
       const WidgetCategoryModel(
         id: 'input',
@@ -2186,6 +2186,259 @@ class MockData {
         ],
         difficulty: 'beginner',
         tags: ['cupertino', 'ios', 'switch'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinotextfield',
+        name: 'CupertinoTextField',
+        description: 'Campo de texto estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoTextField(
+  placeholder: 'Enter text',
+  padding: EdgeInsets.all(12),
+  decoration: BoxDecoration(
+    border: Border.all(color: CupertinoColors.systemGrey),
+    borderRadius: BorderRadius.circular(8),
+  ),
+  onChanged: (value) {
+    print(value);
+  },
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'placeholder',
+            type: 'String?',
+            description: 'Texto placeholder',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'onChanged',
+            type: 'ValueChanged<String>?',
+            description: 'Callback quando texto muda',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'padding',
+            type: 'EdgeInsetsGeometry',
+            description: 'Espaçamento interno',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['cupertino', 'ios', 'input', 'textfield'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinosegmentedcontrol',
+        name: 'CupertinoSegmentedControl',
+        description: 'Controle segmentado estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoSegmentedControl<int>(
+  groupValue: selectedSegment,
+  children: {
+    0: Text('Option 1'),
+    1: Text('Option 2'),
+    2: Text('Option 3'),
+  },
+  onValueChanged: (int value) {
+    setState(() {
+      selectedSegment = value;
+    });
+  },
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'groupValue',
+            type: 'T',
+            description: 'Valor selecionado',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'children',
+            type: 'Map<T, Widget>',
+            description: 'Opções do controle',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onValueChanged',
+            type: 'ValueChanged<T>',
+            description: 'Callback quando muda',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['cupertino', 'ios', 'segmented', 'control'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinopicker',
+        name: 'CupertinoPicker',
+        description: 'Seletor estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoPicker(
+  itemExtent: 32,
+  onSelectedItemChanged: (int index) {
+    print('Selected: \$index');
+  },
+  children: List.generate(10, (index) {
+    return Center(child: Text('Item \$index'));
+  }),
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'itemExtent',
+            type: 'double',
+            description: 'Altura de cada item',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onSelectedItemChanged',
+            type: 'ValueChanged<int>',
+            description: 'Callback quando item muda',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'children',
+            type: 'List<Widget>',
+            description: 'Itens do picker',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['cupertino', 'ios', 'picker', 'selector'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinoalertdialog',
+        name: 'CupertinoAlertDialog',
+        description: 'Diálogo de alerta estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoAlertDialog(
+  title: Text('Alert'),
+  content: Text('This is an iOS-style alert dialog.'),
+  actions: [
+    CupertinoDialogAction(
+      child: Text('Cancel'),
+      onPressed: () => Navigator.pop(context),
+    ),
+    CupertinoDialogAction(
+      isDefaultAction: true,
+      child: Text('OK'),
+      onPressed: () => Navigator.pop(context),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'title',
+            type: 'Widget?',
+            description: 'Título do diálogo',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'content',
+            type: 'Widget?',
+            description: 'Conteúdo do diálogo',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'actions',
+            type: 'List<Widget>',
+            description: 'Ações do diálogo',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['cupertino', 'ios', 'alert', 'dialog'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinocontextmenu',
+        name: 'CupertinoContextMenu',
+        description: 'Menu de contexto estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoContextMenu(
+  actions: [
+    CupertinoContextMenuAction(
+      child: Text('Action 1'),
+      onPressed: () => Navigator.pop(context),
+    ),
+    CupertinoContextMenuAction(
+      child: Text('Action 2'),
+      onPressed: () => Navigator.pop(context),
+    ),
+  ],
+  child: Container(
+    width: 100,
+    height: 100,
+    color: CupertinoColors.systemBlue,
+    child: Center(child: Text('Long Press')),
+  ),
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'actions',
+            type: 'List<Widget>',
+            description: 'Ações do menu',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget a exibir',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['cupertino', 'ios', 'context', 'menu'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cupertinonavigationbar',
+        name: 'CupertinoNavigationBar',
+        description: 'Barra de navegação estilo iOS.',
+        categoryId: 'cupertino',
+        codeExample: '''CupertinoNavigationBar(
+  middle: Text('Title'),
+  leading: CupertinoButton(
+    padding: EdgeInsets.zero,
+    child: Icon(CupertinoIcons.back),
+    onPressed: () => Navigator.pop(context),
+  ),
+  trailing: CupertinoButton(
+    padding: EdgeInsets.zero,
+    child: Icon(CupertinoIcons.add),
+    onPressed: () {},
+  ),
+)''',
+        imports: ['package:flutter/cupertino.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'middle',
+            type: 'Widget?',
+            description: 'Widget central (título)',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'leading',
+            type: 'Widget?',
+            description: 'Widget à esquerda',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'trailing',
+            type: 'Widget?',
+            description: 'Widget à direita',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['cupertino', 'ios', 'navigation', 'bar'],
       ),
     ];
   }

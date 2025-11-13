@@ -1076,6 +1076,95 @@ class _WidgetPreviewState extends State<WidgetPreview> {
       case 'cupertino_activity_indicator':
         return const CupertinoActivityIndicator(radius: 20);
 
+      case 'cupertinotextfield':
+        return const SizedBox(
+          width: 250,
+          child: CupertinoTextField(
+            placeholder: 'Enter text',
+            padding: EdgeInsets.all(12),
+          ),
+        );
+
+      case 'cupertinosegmentedcontrol':
+        return _CupertinoSegmentedControlDemo();
+
+      case 'cupertinopicker':
+        return SizedBox(
+          height: 150,
+          child: CupertinoPicker(
+            itemExtent: 32,
+            onSelectedItemChanged: (_) {},
+            children: List.generate(
+              5,
+              (index) => Center(
+                child: Text('Item ${index + 1}'),
+              ),
+            ),
+          ),
+        );
+
+      case 'cupertinoalertdialog':
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Alert',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text('iOS-style alert dialog'),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Text('Cancel'),
+                    onPressed: () {},
+                  ),
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: const Text('OK'),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+
+      case 'cupertinocontextmenu':
+        return Container(
+          width: 120,
+          height: 80,
+          decoration: BoxDecoration(
+            color: CupertinoColors.activeBlue,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Center(
+            child: Text(
+              'Long Press',
+              style: TextStyle(color: CupertinoColors.white),
+            ),
+          ),
+        );
+
+      case 'cupertinonavigationbar':
+        return const SizedBox(
+          width: 300,
+          child: CupertinoNavigationBar(
+            middle: Text('Title'),
+            leading: Icon(CupertinoIcons.back),
+            trailing: Icon(CupertinoIcons.add),
+          ),
+        );
+
       default:
         return Column(
           mainAxisSize: MainAxisSize.min,
@@ -1597,3 +1686,46 @@ class _RotationTransitionDemoState extends State<_RotationTransitionDemo>
     );
   }
 }
+
+
+// CupertinoSegmentedControl Demo
+class _CupertinoSegmentedControlDemo extends StatefulWidget {
+  @override
+  State<_CupertinoSegmentedControlDemo> createState() =>
+      _CupertinoSegmentedControlDemoState();
+}
+
+class _CupertinoSegmentedControlDemoState
+    extends State<_CupertinoSegmentedControlDemo> {
+  int _selectedSegment = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 250,
+      child: CupertinoSegmentedControl<int>(
+        groupValue: _selectedSegment,
+        children: const {
+          0: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Text('Option 1', style: TextStyle(fontSize: 12)),
+          ),
+          1: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Text('Option 2', style: TextStyle(fontSize: 12)),
+          ),
+          2: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Text('Option 3', style: TextStyle(fontSize: 12)),
+          ),
+        },
+        onValueChanged: (value) {
+          setState(() {
+            _selectedSegment = value;
+          });
+        },
+      ),
+    );
+  }
+}
+
