@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'core/constants/app_strings.dart';
-import 'core/di/injection.dart';
-import 'core/themes/app_theme.dart';
+import 'package:flutter_widgets/core/constants/app_strings.dart';
+import 'package:flutter_widgets/core/di/injection.dart';
+import 'package:flutter_widgets/core/themes/app_theme.dart';
 
 void main() {
   // Initialize Dependency Injection
@@ -17,10 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppStrings.appName,
-      debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
       home: const Scaffold(
         body: Center(
           child: Text('Flutter Widgets App - Setup Complete!'),
