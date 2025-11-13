@@ -56,6 +56,13 @@ class MockData {
         iconCodePoint: 0xe264, // Icons.text_fields
         widgetCount: 10,
       ),
+      const WidgetCategoryModel(
+        id: 'images',
+        name: 'Images & Icons',
+        description: 'Widgets de imagens e ícones',
+        iconCodePoint: 0xe3f4, // Icons.image
+        widgetCount: 8,
+      ),
     ];
   }
 
@@ -2785,6 +2792,300 @@ class MockData {
         ],
         difficulty: 'beginner',
         tags: ['text', 'direction', 'rtl', 'i18n'],
+      ),
+
+      // === IMAGES & ICONS WIDGETS ===
+      const FlutterWidgetModel(
+        id: 'image',
+        name: 'Image',
+        description: 'Exibe uma imagem.',
+        categoryId: 'images',
+        codeExample: '''Image.asset(
+  'assets/images/logo.png',
+  width: 200,
+  height: 200,
+  fit: BoxFit.cover,
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'image',
+            type: 'ImageProvider',
+            description: 'Provedor de imagem',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'width',
+            type: 'double?',
+            description: 'Largura da imagem',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'height',
+            type: 'double?',
+            description: 'Altura da imagem',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'fit',
+            type: 'BoxFit?',
+            description: 'Como ajustar a imagem',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['image', 'asset', 'display'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'icon',
+        name: 'Icon',
+        description: 'Exibe um ícone do Material ou Cupertino.',
+        categoryId: 'images',
+        codeExample: '''Icon(
+  Icons.favorite,
+  size: 48,
+  color: Colors.red,
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'icon',
+            type: 'IconData',
+            description: 'Ícone a exibir',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'size',
+            type: 'double?',
+            description: 'Tamanho do ícone',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'color',
+            type: 'Color?',
+            description: 'Cor do ícone',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['icon', 'material', 'display'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'circleavatar',
+        name: 'CircleAvatar',
+        description: 'Avatar circular com imagem ou texto.',
+        categoryId: 'images',
+        codeExample: '''CircleAvatar(
+  radius: 40,
+  backgroundColor: Colors.blue,
+  child: Text(
+    'AB',
+    style: TextStyle(fontSize: 24, color: Colors.white),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'radius',
+            type: 'double',
+            description: 'Raio do avatar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'backgroundColor',
+            type: 'Color?',
+            description: 'Cor de fundo',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Conteúdo do avatar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'backgroundImage',
+            type: 'ImageProvider?',
+            description: 'Imagem de fundo',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['avatar', 'circle', 'profile'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'imageicon',
+        name: 'ImageIcon',
+        description: 'Ícone customizado de uma imagem.',
+        categoryId: 'images',
+        codeExample: '''ImageIcon(
+  AssetImage('assets/icons/custom_icon.png'),
+  size: 48,
+  color: Colors.blue,
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'image',
+            type: 'ImageProvider',
+            description: 'Imagem do ícone',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'size',
+            type: 'double?',
+            description: 'Tamanho do ícone',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'color',
+            type: 'Color?',
+            description: 'Cor do ícone',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['icon', 'image', 'custom'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'cliprrect',
+        name: 'ClipRRect',
+        description: 'Recorta filho com bordas arredondadas.',
+        categoryId: 'images',
+        codeExample: '''ClipRRect(
+  borderRadius: BorderRadius.circular(16),
+  child: Image.network(
+    'https://picsum.photos/200',
+    width: 200,
+    height: 200,
+    fit: BoxFit.cover,
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'borderRadius',
+            type: 'BorderRadiusGeometry',
+            description: 'Raio das bordas',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget a recortar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['clip', 'rounded', 'image'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'placeholder',
+        name: 'Placeholder',
+        description: 'Placeholder enquanto conteúdo carrega.',
+        categoryId: 'images',
+        codeExample: '''Placeholder(
+  fallbackWidth: 200,
+  fallbackHeight: 200,
+  color: Colors.grey,
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'fallbackWidth',
+            type: 'double',
+            description: 'Largura padrão',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'fallbackHeight',
+            type: 'double',
+            description: 'Altura padrão',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'color',
+            type: 'Color',
+            description: 'Cor do placeholder',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['placeholder', 'loading', 'image'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'decoratedbox',
+        name: 'DecoratedBox',
+        description: 'Adiciona decoração ao filho.',
+        categoryId: 'images',
+        codeExample: '''DecoratedBox(
+  decoration: BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Colors.blue, Colors.purple],
+    ),
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Icon(Icons.star, size: 48, color: Colors.white),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'decoration',
+            type: 'Decoration',
+            description: 'Decoração a aplicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget filho',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['decoration', 'gradient', 'box'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'backdrop',
+        name: 'BackdropFilter',
+        description: 'Aplica filtro ao fundo.',
+        categoryId: 'images',
+        codeExample: '''BackdropFilter(
+  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+  child: Container(
+    width: 200,
+    height: 200,
+    color: Colors.white.withOpacity(0.3),
+    child: Center(child: Text('Blur Effect')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart', 'dart:ui'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'filter',
+            type: 'ImageFilter',
+            description: 'Filtro a aplicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget filho',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['filter', 'blur', 'backdrop'],
       ),
     ];
   }

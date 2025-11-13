@@ -1271,6 +1271,76 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      // Images & Icons Widgets
+      case 'image':
+        return Container(
+          width: 120,
+          height: 120,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Icon(Icons.image, size: 64, color: Colors.grey),
+        );
+
+      case 'icon':
+        return const Icon(Icons.favorite, size: 48, color: Colors.red);
+
+      case 'circleavatar':
+        return const CircleAvatar(
+          radius: 40,
+          backgroundColor: Colors.blue,
+          child: Text('AB', style: TextStyle(fontSize: 24, color: Colors.white)),
+        );
+
+      case 'imageicon':
+        return const Icon(Icons.star, size: 48, color: Colors.amber);
+
+      case 'cliprrect':
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.purple,
+            child: const Icon(Icons.image, size: 48, color: Colors.white),
+          ),
+        );
+
+      case 'placeholder':
+        return const Placeholder(
+          fallbackWidth: 120,
+          fallbackHeight: 120,
+          color: Colors.grey,
+        );
+
+      case 'decoratedbox':
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Colors.blue, Colors.purple],
+            ),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.all(16),
+            child: Icon(Icons.star, size: 48, color: Colors.white),
+          ),
+        );
+
+      case 'backdrop':
+        return Container(
+          width: 150,
+          height: 100,
+          decoration: BoxDecoration(
+            color: Colors.blue.withValues(alpha: 0.3),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Center(
+            child: Text('Blur', style: TextStyle(fontSize: 20)),
+          ),
+        );
+
       default:
         return Column(
           mainAxisSize: MainAxisSize.min,
