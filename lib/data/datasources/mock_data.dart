@@ -26,21 +26,21 @@ class MockData {
         name: 'Cupertino',
         description: 'Widgets estilo iOS',
         iconCodePoint: 0xe318, // Icons.phone_iphone
-        widgetCount: 11,
+        widgetCount: 8,
       ),
       const WidgetCategoryModel(
         id: 'input',
         name: 'Input',
         description: 'Widgets de entrada de dados',
         iconCodePoint: 0xe23c, // Icons.input
-        widgetCount: 8,
+        widgetCount: 9,
       ),
       const WidgetCategoryModel(
         id: 'animation',
         name: 'Animation',
         description: 'Widgets animados',
         iconCodePoint: 0xe1ba, // Icons.animation
-        widgetCount: 11,
+        widgetCount: 8,
       ),
       const WidgetCategoryModel(
         id: 'scrolling',
@@ -1342,6 +1342,56 @@ class MockData {
         tags: ['material', 'dialog', 'modal', 'popup'],
       ),
 
+      const FlutterWidgetModel(
+        id: 'expansionpanel',
+        name: 'ExpansionPanel',
+        description: 'Painel expansível com cabeçalho e corpo.',
+        categoryId: 'material',
+        codeExample: '''ExpansionPanelList(
+  expansionCallback: (int index, bool isExpanded) {
+    setState(() {
+      items[index].isExpanded = !isExpanded;
+    });
+  },
+  children: items.map<ExpansionPanel>((Item item) {
+    return ExpansionPanel(
+      headerBuilder: (BuildContext context, bool isExpanded) {
+        return ListTile(
+          title: Text(item.headerValue),
+        );
+      },
+      body: ListTile(
+        title: Text(item.expandedValue),
+      ),
+      isExpanded: item.isExpanded,
+    );
+  }).toList(),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'headerBuilder',
+            type: 'ExpansionPanelHeaderBuilder',
+            description: 'Constrói o cabeçalho',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'body',
+            type: 'Widget',
+            description: 'Corpo do painel',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'isExpanded',
+            type: 'bool',
+            description: 'Se está expandido',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'expansion', 'panel', 'accordion'],
+      ),
+
       // === INPUT WIDGETS ===
       const FlutterWidgetModel(
         id: 'textfield',
@@ -1668,6 +1718,38 @@ class MockData {
         tags: ['input', 'date', 'picker', 'calendar'],
       ),
 
+      const FlutterWidgetModel(
+        id: 'switch',
+        name: 'Switch',
+        description: 'Toggle switch on/off.',
+        categoryId: 'input',
+        codeExample: '''Switch(
+  value: isEnabled,
+  onChanged: (bool value) {
+    setState(() {
+      isEnabled = value;
+    });
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'bool',
+            description: 'Estado atual do switch',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onChanged',
+            type: 'ValueChanged<bool>?',
+            description: 'Callback quando muda',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['input', 'switch', 'toggle', 'material'],
+      ),
+
       // === SCROLLING WIDGETS ===
       const FlutterWidgetModel(
         id: 'listview',
@@ -1865,6 +1947,83 @@ class MockData {
         ],
         difficulty: 'advanced',
         tags: ['scrolling', 'sliver', 'custom'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'sliverlist',
+        name: 'SliverList',
+        description: 'Lista de widgets em um CustomScrollView.',
+        categoryId: 'scrolling',
+        codeExample: '''CustomScrollView(
+  slivers: [
+    SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return ListTile(
+            title: Text('Item #\$index'),
+          );
+        },
+        childCount: 20,
+      ),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'delegate',
+            type: 'SliverChildDelegate',
+            description: 'Delegado para construir os children',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['scrolling', 'sliver', 'list'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'slivergrid',
+        name: 'SliverGrid',
+        description: 'Grade de widgets em um CustomScrollView.',
+        categoryId: 'scrolling',
+        codeExample: '''CustomScrollView(
+  slivers: [
+    SliverGrid(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        childAspectRatio: 1.0,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Container(
+            color: Colors.teal[100 * (index % 9)],
+            child: Center(child: Text('Grid \$index')),
+          );
+        },
+        childCount: 20,
+      ),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'gridDelegate',
+            type: 'SliverGridDelegate',
+            description: 'Delegado para o layout da grade',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'delegate',
+            type: 'SliverChildDelegate',
+            description: 'Delegado para construir os children',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['scrolling', 'sliver', 'grid'],
       ),
 
       // === ANIMATION WIDGETS ===

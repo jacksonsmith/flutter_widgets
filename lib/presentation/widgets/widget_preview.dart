@@ -595,6 +595,9 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'expansionpanel':
+        return _ExpansionPanelDemo();
+
       case 'chip':
         return Chip(
           avatar: const CircleAvatar(child: Text('A', style: TextStyle(fontSize: 10))),
@@ -726,12 +729,6 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           onChanged: (_) {},
         );
 
-      case 'switch':
-        return Switch(
-          value: true,
-          onChanged: (_) {},
-        );
-
       case 'radio':
         return _RadioDemo();
 
@@ -752,6 +749,9 @@ class _WidgetPreviewState extends State<WidgetPreview> {
 
       case 'datepicker':
         return _DatePickerDemo();
+
+      case 'switch':
+        return _SwitchDemo();
 
       // Scrolling Widgets
       case 'listview':
@@ -989,6 +989,69 @@ class _WidgetPreviewState extends State<WidgetPreview> {
                     ),
                   ),
                   childCount: 15,
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 'sliverlist':
+        return SizedBox(
+          height: 200,
+          child: CustomScrollView(
+            slivers: [
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => Container(
+                    margin: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Text(
+                      'Sliver Item #${index + 1}',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ),
+                  childCount: 15,
+                ),
+              ),
+            ],
+          ),
+        );
+
+      case 'slivergrid':
+        return SizedBox(
+          height: 200,
+          child: CustomScrollView(
+            slivers: [
+              SliverGrid(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  childAspectRatio: 1.5,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) => Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Grid ${index + 1}',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSecondaryContainer,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                  childCount: 12,
                 ),
               ),
             ],
@@ -2089,6 +2152,88 @@ class _AnimatedDefaultTextStyleDemoState
         fontWeight: FontWeight.bold,
       ),
       child: const Text('Animated'),
+    );
+  }
+}
+
+// Switch Demo
+class _SwitchDemo extends StatefulWidget {
+  @override
+  State<_SwitchDemo> createState() => _SwitchDemoState();
+}
+
+class _SwitchDemoState extends State<_SwitchDemo> {
+  bool _isEnabled = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          _isEnabled ? 'ON' : 'OFF',
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(width: 12),
+        Switch(
+          value: _isEnabled,
+          onChanged: (value) {
+            setState(() {
+              _isEnabled = value;
+            });
+          },
+        ),
+      ],
+    );
+  }
+}
+
+// ExpansionPanel Demo
+class _ExpansionPanelDemo extends StatefulWidget {
+  @override
+  State<_ExpansionPanelDemo> createState() => _ExpansionPanelDemoState();
+}
+
+class _ExpansionPanelDemoState extends State<_ExpansionPanelDemo> {
+  bool _isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return ExpansionPanelList(
+      expansionCallback: (int index, bool isExpanded) {
+        setState(() {
+          _isExpanded = !isExpanded;
+        });
+      },
+      children: [
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(
+                'Panel Header',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
+                  fontSize: 14,
+                ),
+              ),
+            );
+          },
+          body: Container(
+            padding: const EdgeInsets.all(16),
+            child: Text(
+              'Panel content goes here',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
+                fontSize: 12,
+              ),
+            ),
+          ),
+          isExpanded: _isExpanded,
+        ),
+      ],
     );
   }
 }
