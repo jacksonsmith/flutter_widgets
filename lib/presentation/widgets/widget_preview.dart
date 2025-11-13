@@ -1341,6 +1341,149 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      // Gestures Widgets
+      case 'gesturedetector':
+        return GestureDetector(
+          onTap: () {},
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.blue,
+            child: const Center(child: Text('Tap', style: TextStyle(color: Colors.white))),
+          ),
+        );
+
+      case 'inkwell':
+        return InkWell(
+          onTap: () {},
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: const Text('InkWell Tap'),
+          ),
+        );
+
+      case 'draggable':
+        return Draggable(
+          data: 'data',
+          feedback: Material(
+            child: Container(
+              width: 80,
+              height: 80,
+              color: Colors.red.withValues(alpha: 0.7),
+              child: const Center(child: Icon(Icons.drag_indicator, color: Colors.white)),
+            ),
+          ),
+          child: Container(
+            width: 80,
+            height: 80,
+            color: Colors.red,
+            child: const Center(child: Icon(Icons.drag_indicator, color: Colors.white)),
+          ),
+        );
+
+      case 'dismissible':
+        return const SizedBox(
+          width: 200,
+          height: 60,
+          child: Card(
+            child: ListTile(
+              title: Text('Swipe me'),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ),
+        );
+
+      case 'refreshindicator':
+        return const SizedBox(
+          height: 120,
+          child: Center(child: Text('Pull to Refresh', style: TextStyle(fontSize: 16))),
+        );
+
+      case 'scrollbar':
+        return SizedBox(
+          height: 120,
+          width: 150,
+          child: Scrollbar(
+            child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) => ListTile(
+                title: Text('Item $index', style: const TextStyle(fontSize: 12)),
+              ),
+            ),
+          ),
+        );
+
+      case 'interactiveviewer':
+        return InteractiveViewer(
+          minScale: 0.5,
+          maxScale: 2,
+          child: Container(
+            width: 100,
+            height: 100,
+            color: Colors.purple,
+            child: const Center(child: Text('Pinch/Zoom', style: TextStyle(color: Colors.white, fontSize: 12))),
+          ),
+        );
+
+      case 'absorberpointer':
+        return AbsorbPointer(
+          absorbing: true,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Disabled'),
+          ),
+        );
+
+      // Navigation Widgets
+      case 'popupmenubutton':
+        return PopupMenuButton(
+          itemBuilder: (context) => const [
+            PopupMenuItem(value: 1, child: Text('Item 1')),
+            PopupMenuItem(value: 2, child: Text('Item 2')),
+          ],
+        );
+
+      case 'backbutton':
+        return const BackButton();
+
+      case 'closebutton':
+        return const CloseButton();
+
+      case 'navigationrail':
+        return SizedBox(
+          height: 200,
+          child: NavigationRail(
+            selectedIndex: 0,
+            destinations: const [
+              NavigationRailDestination(icon: Icon(Icons.home), label: Text('Home')),
+              NavigationRailDestination(icon: Icon(Icons.search), label: Text('Search')),
+            ],
+            onDestinationSelected: (_) {},
+          ),
+        );
+
+      case 'popscope':
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.orange),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: const Text('PopScope', style: TextStyle(fontSize: 16)),
+        );
+
+      case 'listwheel':
+        return SizedBox(
+          height: 150,
+          child: ListWheelScrollView(
+            itemExtent: 40,
+            children: List.generate(
+              10,
+              (index) => Center(child: Text('Item $index')),
+            ),
+          ),
+        );
+
       default:
         return Column(
           mainAxisSize: MainAxisSize.min,

@@ -63,6 +63,20 @@ class MockData {
         iconCodePoint: 0xe3f4, // Icons.image
         widgetCount: 8,
       ),
+      const WidgetCategoryModel(
+        id: 'gestures',
+        name: 'Gestures',
+        description: 'Widgets de gestos e interação',
+        iconCodePoint: 0xe1a5, // Icons.touch_app
+        widgetCount: 8,
+      ),
+      const WidgetCategoryModel(
+        id: 'navigation',
+        name: 'Navigation',
+        description: 'Widgets de navegação',
+        iconCodePoint: 0xe571, // Icons.navigation
+        widgetCount: 6,
+      ),
     ];
   }
 
@@ -3086,6 +3100,387 @@ class MockData {
         ],
         difficulty: 'advanced',
         tags: ['filter', 'blur', 'backdrop'],
+      ),
+
+      // === GESTURES WIDGETS ===
+      const FlutterWidgetModel(
+        id: 'gesturedetector',
+        name: 'GestureDetector',
+        description: 'Detecta gestos do usuário.',
+        categoryId: 'gestures',
+        codeExample: '''GestureDetector(
+  onTap: () => print('Tapped'),
+  onDoubleTap: () => print('Double tapped'),
+  onLongPress: () => print('Long pressed'),
+  child: Container(
+    width: 100,
+    height: 100,
+    color: Colors.blue,
+    child: Center(child: Text('Tap me')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onTap',
+            type: 'GestureTapCallback?',
+            description: 'Callback ao tocar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Widget filho',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['gesture', 'tap', 'interaction'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'inkwell',
+        name: 'InkWell',
+        description: 'Resposta Material ao toque com efeito ripple.',
+        categoryId: 'gestures',
+        codeExample: '''InkWell(
+  onTap: () => print('Tapped'),
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Text('Tap me'),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onTap',
+            type: 'GestureTapCallback?',
+            description: 'Callback ao tocar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['gesture', 'material', 'ripple'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'draggable',
+        name: 'Draggable',
+        description: 'Widget que pode ser arrastado.',
+        categoryId: 'gestures',
+        codeExample: '''Draggable(
+  data: 'my_data',
+  child: Container(
+    width: 100,
+    height: 100,
+    color: Colors.red,
+    child: Center(child: Text('Drag')),
+  ),
+  feedback: Material(
+    child: Container(
+      width: 100,
+      height: 100,
+      color: Colors.red.withOpacity(0.5),
+    ),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'data',
+            type: 'T',
+            description: 'Dados a arrastar',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['gesture', 'drag', 'interaction'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'dismissible',
+        name: 'Dismissible',
+        description: 'Widget que pode ser dispensado deslizando.',
+        categoryId: 'gestures',
+        codeExample: '''Dismissible(
+  key: Key('item'),
+  onDismissed: (direction) {
+    print('Dismissed');
+  },
+  background: Container(color: Colors.red),
+  child: ListTile(
+    title: Text('Swipe to dismiss'),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'key',
+            type: 'Key',
+            description: 'Chave única',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['gesture', 'swipe', 'dismiss'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'refreshindicator',
+        name: 'RefreshIndicator',
+        description: 'Indicador de pull-to-refresh.',
+        categoryId: 'gestures',
+        codeExample: '''RefreshIndicator(
+  onRefresh: () async {
+    await Future.delayed(Duration(seconds: 2));
+  },
+  child: ListView(
+    children: [
+      ListTile(title: Text('Pull to refresh')),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onRefresh',
+            type: 'RefreshCallback',
+            description: 'Callback ao refresh',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['gesture', 'refresh', 'pull'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'scrollbar',
+        name: 'Scrollbar',
+        description: 'Barra de rolagem para widget filho.',
+        categoryId: 'gestures',
+        codeExample: '''Scrollbar(
+  child: ListView.builder(
+    itemCount: 50,
+    itemBuilder: (context, index) {
+      return ListTile(title: Text('Item \$index'));
+    },
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Widget com scroll',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['scroll', 'scrollbar', 'list'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'interactiveviewer',
+        name: 'InteractiveViewer',
+        description: 'Permite zoom e pan no conteúdo.',
+        categoryId: 'gestures',
+        codeExample: '''InteractiveViewer(
+  boundaryMargin: EdgeInsets.all(20),
+  minScale: 0.5,
+  maxScale: 4,
+  child: Image.network('https://picsum.photos/400'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Conteúdo interativo',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['gesture', 'zoom', 'pan'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'absorberpointer',
+        name: 'AbsorbPointer',
+        description: 'Absorve eventos de toque.',
+        categoryId: 'gestures',
+        codeExample: '''AbsorbPointer(
+  absorbing: true,
+  child: ElevatedButton(
+    onPressed: () => print('Will not execute'),
+    child: Text('Disabled'),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'absorbing',
+            type: 'bool',
+            description: 'Se deve absorver toques',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['gesture', 'absorb', 'disable'],
+      ),
+
+      // === NAVIGATION WIDGETS ===
+      const FlutterWidgetModel(
+        id: 'popupmenubutton',
+        name: 'PopupMenuButton',
+        description: 'Botão com menu popup.',
+        categoryId: 'navigation',
+        codeExample: '''PopupMenuButton(
+  itemBuilder: (context) => [
+    PopupMenuItem(value: 1, child: Text('Item 1')),
+    PopupMenuItem(value: 2, child: Text('Item 2')),
+    PopupMenuItem(value: 3, child: Text('Item 3')),
+  ],
+  onSelected: (value) => print('Selected: \$value'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'itemBuilder',
+            type: 'PopupMenuItemBuilder<T>',
+            description: 'Construtor de itens',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['navigation', 'menu', 'popup'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'backbutton',
+        name: 'BackButton',
+        description: 'Botão voltar padrão.',
+        categoryId: 'navigation',
+        codeExample: '''BackButton(
+  onPressed: () => Navigator.pop(context),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onPressed',
+            type: 'VoidCallback?',
+            description: 'Callback ao pressionar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['navigation', 'back', 'button'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'closebutton',
+        name: 'CloseButton',
+        description: 'Botão fechar padrão.',
+        categoryId: 'navigation',
+        codeExample: '''CloseButton(
+  onPressed: () => Navigator.pop(context),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onPressed',
+            type: 'VoidCallback?',
+            description: 'Callback ao pressionar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['navigation', 'close', 'button'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'navigationrail',
+        name: 'NavigationRail',
+        description: 'Rail de navegação lateral.',
+        categoryId: 'navigation',
+        codeExample: '''NavigationRail(
+  selectedIndex: 0,
+  destinations: [
+    NavigationRailDestination(
+      icon: Icon(Icons.home),
+      label: Text('Home'),
+    ),
+    NavigationRailDestination(
+      icon: Icon(Icons.search),
+      label: Text('Search'),
+    ),
+  ],
+  onDestinationSelected: (index) => print(index),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'destinations',
+            type: 'List<NavigationRailDestination>',
+            description: 'Destinos de navegação',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['navigation', 'rail', 'sidebar'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'popscope',
+        name: 'PopScope',
+        description: 'Controla comportamento de voltar.',
+        categoryId: 'navigation',
+        codeExample: '''PopScope(
+  canPop: false,
+  onPopInvoked: (didPop) {
+    if (!didPop) {
+      print('Pop prevented');
+    }
+  },
+  child: Scaffold(
+    body: Center(child: Text('Content')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'canPop',
+            type: 'bool',
+            description: 'Pode voltar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'advanced',
+        tags: ['navigation', 'pop', 'scope'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'listwheel',
+        name: 'ListWheelScrollView',
+        description: 'Lista em formato de roda.',
+        categoryId: 'navigation',
+        codeExample: '''ListWheelScrollView(
+  itemExtent: 50,
+  children: List.generate(
+    20,
+    (index) => Center(child: Text('Item \$index')),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'itemExtent',
+            type: 'double',
+            description: 'Altura de cada item',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['navigation', 'wheel', 'scroll'],
       ),
     ];
   }
