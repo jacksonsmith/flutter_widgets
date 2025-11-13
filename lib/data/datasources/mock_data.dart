@@ -19,7 +19,7 @@ class MockData {
         name: 'Material Design',
         description: 'Widgets do Material Design',
         iconCodePoint: 0xe3e8, // Icons.widgets
-        widgetCount: 8,
+        widgetCount: 21,
       ),
       const WidgetCategoryModel(
         id: 'cupertino',
@@ -735,6 +735,583 @@ class MockData {
         ],
         difficulty: 'beginner',
         tags: ['material', 'scaffold', 'structure'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'iconbutton',
+        name: 'IconButton',
+        description: 'Botão com ícone que responde a toques.',
+        categoryId: 'material',
+        codeExample: '''IconButton(
+  icon: Icon(Icons.favorite),
+  color: Colors.red,
+  onPressed: () {
+    print('Icon button pressed!');
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'icon',
+            type: 'Widget',
+            description: 'Ícone a ser exibido',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onPressed',
+            type: 'VoidCallback?',
+            description: 'Função ao clicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'color',
+            type: 'Color?',
+            description: 'Cor do ícone',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'button', 'icon'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'floatingactionbutton',
+        name: 'FloatingActionButton',
+        description: 'Botão de ação flutuante circular.',
+        categoryId: 'material',
+        codeExample: '''FloatingActionButton(
+  onPressed: () {
+    print('FAB pressed!');
+  },
+  child: Icon(Icons.add),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onPressed',
+            type: 'VoidCallback?',
+            description: 'Função ao clicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Ícone ou widget filho',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'fab', 'button', 'floating'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'outlinedbutton',
+        name: 'OutlinedButton',
+        description: 'Botão com borda e sem preenchimento.',
+        categoryId: 'material',
+        codeExample: '''OutlinedButton(
+  onPressed: () {
+    print('Outlined button pressed!');
+  },
+  child: Text('Outlined'),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'onPressed',
+            type: 'VoidCallback?',
+            description: 'Função ao clicar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget',
+            description: 'Conteúdo do botão',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'button', 'outlined', 'border'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'appbar',
+        name: 'AppBar',
+        description: 'Barra de aplicativo Material Design.',
+        categoryId: 'material',
+        codeExample: '''AppBar(
+  title: Text('My App'),
+  actions: [
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'title',
+            type: 'Widget?',
+            description: 'Título da AppBar',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'actions',
+            type: 'List<Widget>?',
+            description: 'Ações à direita',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'appbar', 'toolbar'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'bottomnavigationbar',
+        name: 'BottomNavigationBar',
+        description: 'Barra de navegação inferior Material.',
+        categoryId: 'material',
+        codeExample: '''BottomNavigationBar(
+  currentIndex: 0,
+  items: [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.search),
+      label: 'Search',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person),
+      label: 'Profile',
+    ),
+  ],
+  onTap: (index) {},
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'currentIndex',
+            type: 'int',
+            description: 'Índice selecionado',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'items',
+            type: 'List<BottomNavigationBarItem>',
+            description: 'Itens da barra',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'onTap',
+            type: 'ValueChanged<int>?',
+            description: 'Callback ao tocar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'navigation', 'bottombar'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'drawer',
+        name: 'Drawer',
+        description: 'Menu lateral deslizante.',
+        categoryId: 'material',
+        codeExample: '''Drawer(
+  child: ListView(
+    children: [
+      DrawerHeader(
+        child: Text('Menu'),
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text('Home'),
+        onTap: () {},
+      ),
+      ListTile(
+        leading: Icon(Icons.settings),
+        title: Text('Settings'),
+        onTap: () {},
+      ),
+    ],
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Conteúdo do drawer',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'drawer', 'menu', 'navigation'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'snackbar',
+        name: 'SnackBar',
+        description: 'Mensagem temporária na parte inferior.',
+        categoryId: 'material',
+        codeExample: '''SnackBar(
+  content: Text('Item deleted'),
+  action: SnackBarAction(
+    label: 'Undo',
+    onPressed: () {},
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'content',
+            type: 'Widget',
+            description: 'Conteúdo do snackbar',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'action',
+            type: 'SnackBarAction?',
+            description: 'Ação do snackbar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'snackbar', 'notification', 'toast'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'alertdialog',
+        name: 'AlertDialog',
+        description: 'Diálogo de alerta Material.',
+        categoryId: 'material',
+        codeExample: '''AlertDialog(
+  title: Text('Delete item?'),
+  content: Text('This action cannot be undone.'),
+  actions: [
+    TextButton(
+      onPressed: () {},
+      child: Text('Cancel'),
+    ),
+    TextButton(
+      onPressed: () {},
+      child: Text('Delete'),
+    ),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'title',
+            type: 'Widget?',
+            description: 'Título do diálogo',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'content',
+            type: 'Widget?',
+            description: 'Conteúdo do diálogo',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'actions',
+            type: 'List<Widget>?',
+            description: 'Ações do diálogo',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'dialog', 'alert', 'modal'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'chip',
+        name: 'Chip',
+        description: 'Elemento compacto de informação.',
+        categoryId: 'material',
+        codeExample: '''Chip(
+  avatar: CircleAvatar(
+    child: Text('A'),
+  ),
+  label: Text('Tag'),
+  onDeleted: () {},
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'label',
+            type: 'Widget',
+            description: 'Label do chip',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'avatar',
+            type: 'Widget?',
+            description: 'Avatar à esquerda',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'onDeleted',
+            type: 'VoidCallback?',
+            description: 'Callback ao deletar',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'chip', 'tag', 'badge'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'divider',
+        name: 'Divider',
+        description: 'Linha divisória horizontal.',
+        categoryId: 'material',
+        codeExample: '''Column(
+  children: [
+    Text('Item 1'),
+    Divider(),
+    Text('Item 2'),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'height',
+            type: 'double?',
+            description: 'Altura do divider',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'thickness',
+            type: 'double?',
+            description: 'Espessura da linha',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'color',
+            type: 'Color?',
+            description: 'Cor da linha',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'divider', 'separator'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'linearprogressindicator',
+        name: 'LinearProgressIndicator',
+        description: 'Indicador de progresso linear.',
+        categoryId: 'material',
+        codeExample: '''LinearProgressIndicator(
+  value: 0.7, // 70%
+  backgroundColor: Colors.grey[200],
+  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'double?',
+            description: 'Valor do progresso (0.0 a 1.0)',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'backgroundColor',
+            type: 'Color?',
+            description: 'Cor de fundo',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'progress', 'indicator', 'loading'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'circularprogressindicator',
+        name: 'CircularProgressIndicator',
+        description: 'Indicador de progresso circular.',
+        categoryId: 'material',
+        codeExample: '''CircularProgressIndicator(
+  value: 0.7, // 70%
+  backgroundColor: Colors.grey[200],
+  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'value',
+            type: 'double?',
+            description: 'Valor do progresso (0.0 a 1.0)',
+            isRequired: false,
+          ),
+          WidgetPropertyModel(
+            name: 'backgroundColor',
+            type: 'Color?',
+            description: 'Cor de fundo',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'beginner',
+        tags: ['material', 'progress', 'indicator', 'loading', 'spinner'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'tabbar',
+        name: 'TabBar',
+        description: 'Barra de abas Material.',
+        categoryId: 'material',
+        codeExample: '''DefaultTabController(
+  length: 3,
+  child: Scaffold(
+    appBar: AppBar(
+      bottom: TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.home), text: 'Home'),
+          Tab(icon: Icon(Icons.search), text: 'Search'),
+          Tab(icon: Icon(Icons.person), text: 'Profile'),
+        ],
+      ),
+    ),
+    body: TabBarView(
+      children: [
+        Center(child: Text('Home')),
+        Center(child: Text('Search')),
+        Center(child: Text('Profile')),
+      ],
+    ),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'tabs',
+            type: 'List<Widget>',
+            description: 'Lista de abas',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'tabs', 'navigation'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'datatable',
+        name: 'DataTable',
+        description: 'Tabela de dados Material.',
+        categoryId: 'material',
+        codeExample: '''DataTable(
+  columns: [
+    DataColumn(label: Text('Name')),
+    DataColumn(label: Text('Age')),
+  ],
+  rows: [
+    DataRow(cells: [
+      DataCell(Text('John')),
+      DataCell(Text('25')),
+    ]),
+    DataRow(cells: [
+      DataCell(Text('Jane')),
+      DataCell(Text('30')),
+    ]),
+  ],
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'columns',
+            type: 'List<DataColumn>',
+            description: 'Colunas da tabela',
+            isRequired: true,
+          ),
+          WidgetPropertyModel(
+            name: 'rows',
+            type: 'List<DataRow>',
+            description: 'Linhas de dados',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'table', 'data', 'grid'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'bottomsheet',
+        name: 'BottomSheet',
+        description: 'Painel inferior deslizante.',
+        categoryId: 'material',
+        codeExample: '''showModalBottomSheet(
+  context: context,
+  builder: (context) {
+    return Container(
+      height: 200,
+      child: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.share),
+            title: Text('Share'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.link),
+            title: Text('Copy link'),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  },
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'builder',
+            type: 'WidgetBuilder',
+            description: 'Constrói o conteúdo',
+            isRequired: true,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'bottomsheet', 'modal', 'panel'],
+      ),
+
+      const FlutterWidgetModel(
+        id: 'dialog',
+        name: 'Dialog',
+        description: 'Diálogo modal genérico.',
+        categoryId: 'material',
+        codeExample: '''Dialog(
+  child: Padding(
+    padding: EdgeInsets.all(16.0),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('Dialog Title'),
+        SizedBox(height: 16),
+        Text('Dialog content goes here.'),
+        SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () {},
+          child: Text('OK'),
+        ),
+      ],
+    ),
+  ),
+)''',
+        imports: ['package:flutter/material.dart'],
+        properties: [
+          WidgetPropertyModel(
+            name: 'child',
+            type: 'Widget?',
+            description: 'Conteúdo do diálogo',
+            isRequired: false,
+          ),
+        ],
+        difficulty: 'intermediate',
+        tags: ['material', 'dialog', 'modal', 'popup'],
       ),
 
       // === INPUT WIDGETS ===

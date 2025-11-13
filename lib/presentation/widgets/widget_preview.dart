@@ -490,6 +490,223 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           onPressed: () {},
         );
 
+      case 'appbar':
+        return SizedBox(
+          width: 250,
+          height: 60,
+          child: AppBar(
+            title: const Text('AppBar', style: TextStyle(fontSize: 16)),
+            actions: [
+              IconButton(icon: const Icon(Icons.search, size: 20), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.more_vert, size: 20), onPressed: () {}),
+            ],
+          ),
+        );
+
+      case 'bottomnavigationbar':
+        return SizedBox(
+          width: 250,
+          height: 80,
+          child: BottomNavigationBar(
+            currentIndex: 0,
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home, size: 20), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.search, size: 20), label: 'Search'),
+              BottomNavigationBarItem(icon: Icon(Icons.person, size: 20), label: 'Profile'),
+            ],
+            selectedFontSize: 10,
+            unselectedFontSize: 10,
+          ),
+        );
+
+      case 'drawer':
+        return SizedBox(
+          width: 200,
+          height: 250,
+          child: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(color: Colors.blue),
+                  child: Text('Menu', style: TextStyle(color: Colors.white, fontSize: 18)),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.home, size: 20),
+                  title: const Text('Home', style: TextStyle(fontSize: 12)),
+                  onTap: () {},
+                ),
+                ListTile(
+                  leading: const Icon(Icons.settings, size: 20),
+                  title: const Text('Settings', style: TextStyle(fontSize: 12)),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+        );
+
+      case 'snackbar':
+        return Container(
+          width: 250,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[800],
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Row(
+            children: [
+              const Expanded(
+                child: Text('Item deleted', style: TextStyle(color: Colors.white, fontSize: 12)),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text('UNDO', style: TextStyle(color: Colors.blue, fontSize: 12)),
+              ),
+            ],
+          ),
+        );
+
+      case 'alertdialog':
+      case 'dialog':
+        return Container(
+          width: 200,
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: Theme.of(context).dialogTheme.backgroundColor ?? Theme.of(context).cardColor,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 10)],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Dialog Title', style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 12),
+              Text('Dialog content', style: Theme.of(context).textTheme.bodySmall),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(onPressed: () {}, child: const Text('CANCEL', style: TextStyle(fontSize: 11))),
+                  TextButton(onPressed: () {}, child: const Text('OK', style: TextStyle(fontSize: 11))),
+                ],
+              ),
+            ],
+          ),
+        );
+
+      case 'chip':
+        return Chip(
+          avatar: const CircleAvatar(child: Text('A', style: TextStyle(fontSize: 10))),
+          label: const Text('Chip Label', style: TextStyle(fontSize: 12)),
+          onDeleted: () {},
+        );
+
+      case 'divider':
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Item 1', style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
+            const Divider(thickness: 1),
+            Text('Item 2', style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
+          ],
+        );
+
+      case 'linearprogressindicator':
+        return const SizedBox(
+          width: 200,
+          child: LinearProgressIndicator(value: 0.7),
+        );
+
+      case 'circularprogressindicator':
+        return const CircularProgressIndicator(value: 0.7);
+
+      case 'tabbar':
+        return Container(
+          width: 250,
+          height: 100,
+          color: Theme.of(context).colorScheme.surface,
+          child: DefaultTabController(
+            length: 3,
+            child: Column(
+              children: [
+                const TabBar(
+                  labelStyle: TextStyle(fontSize: 10),
+                  tabs: [
+                    Tab(icon: Icon(Icons.home, size: 16), text: 'Home'),
+                    Tab(icon: Icon(Icons.search, size: 16), text: 'Search'),
+                    Tab(icon: Icon(Icons.person, size: 16), text: 'Profile'),
+                  ],
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      Center(child: Text('Home', style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurface))),
+                      Center(child: Text('Search', style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurface))),
+                      Center(child: Text('Profile', style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurface))),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+
+      case 'datatable':
+        return DataTable(
+          columnSpacing: 20,
+          horizontalMargin: 10,
+          dataRowMinHeight: 30,
+          dataRowMaxHeight: 40,
+          headingRowHeight: 35,
+          columns: const [
+            DataColumn(label: Text('Name', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Age', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold))),
+          ],
+          rows: const [
+            DataRow(
+              cells: [
+                DataCell(Text('John', style: TextStyle(fontSize: 10))),
+                DataCell(Text('25', style: TextStyle(fontSize: 10))),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('Jane', style: TextStyle(fontSize: 10))),
+                DataCell(Text('30', style: TextStyle(fontSize: 10))),
+              ],
+            ),
+          ],
+        );
+
+      case 'bottomsheet':
+        return Container(
+          width: 200,
+          height: 120,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+            boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 10)],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 8),
+              Container(width: 40, height: 4, decoration: BoxDecoration(color: Colors.grey[400], borderRadius: BorderRadius.circular(2))),
+              ListTile(
+                leading: const Icon(Icons.share, size: 20),
+                title: const Text('Share', style: TextStyle(fontSize: 12)),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: const Icon(Icons.link, size: 20),
+                title: const Text('Copy link', style: TextStyle(fontSize: 12)),
+                onTap: () {},
+              ),
+            ],
+          ),
+        );
+
       // Input Widgets
       case 'textfield':
       case 'text_field':
