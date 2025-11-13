@@ -158,19 +158,115 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'padding':
+        return Padding(
+          padding: const EdgeInsets.all(24),
+          child: Container(
+            width: 120,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Center(
+              child: Text(
+                'Padded',
+                style: TextStyle(color: Colors.white, fontSize: 18),
+              ),
+            ),
+          ),
+        );
+
+      case 'center':
+        return Container(
+          width: 200,
+          height: 120,
+          color: Colors.grey[200],
+          child: const Center(
+            child: Icon(Icons.center_focus_strong, size: 48, color: Colors.blue),
+          ),
+        );
+
+      case 'expanded':
+        return SizedBox(
+          width: 200,
+          height: 100,
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                color: Colors.red,
+                child: const Center(child: Text('Fixed', style: TextStyle(fontSize: 10))),
+              ),
+              const Expanded(
+                child: ColoredBox(
+                  color: Colors.green,
+                  child: Center(child: Text('Expanded', style: TextStyle(color: Colors.white))),
+                ),
+              ),
+              Container(
+                width: 50,
+                color: Colors.blue,
+                child: const Center(child: Text('Fixed', style: TextStyle(fontSize: 10, color: Colors.white))),
+              ),
+            ],
+          ),
+        );
+
+      case 'sizedbox':
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 100,
+              height: 40,
+              color: Colors.blue,
+              child: const Center(child: Text('Box 1', style: TextStyle(color: Colors.white))),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              width: 100,
+              height: 40,
+              color: Colors.green,
+              child: const Center(child: Text('Box 2', style: TextStyle(color: Colors.white))),
+            ),
+          ],
+        );
+
+      case 'scaffold':
+        return SizedBox(
+          width: 200,
+          height: 250,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Scaffold', style: TextStyle(fontSize: 14)),
+              toolbarHeight: 40,
+            ),
+            body: const Center(child: Text('Body')),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {},
+              mini: true,
+              child: const Icon(Icons.add, size: 20),
+            ),
+          ),
+        );
+
       // Material Widgets
+      case 'elevatedbutton':
       case 'elevated_button':
         return ElevatedButton(
           onPressed: () {},
           child: const Text('Elevated Button'),
         );
 
+      case 'textbutton':
       case 'text_button':
         return TextButton(
           onPressed: () {},
           child: const Text('Text Button'),
         );
 
+      case 'outlinedbutton':
       case 'outlined_button':
         return OutlinedButton(
           onPressed: () {},
@@ -198,12 +294,14 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'floatingactionbutton':
       case 'floating_action_button':
         return FloatingActionButton(
           onPressed: () {},
           child: const Icon(Icons.add),
         );
 
+      case 'iconbutton':
       case 'icon_button':
         return IconButton(
           icon: const Icon(Icons.favorite),
@@ -213,6 +311,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         );
 
       // Input Widgets
+      case 'textfield':
       case 'text_field':
         return const SizedBox(
           width: 200,
@@ -249,6 +348,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         );
 
       // Scrolling Widgets
+      case 'listview':
       case 'list_view':
         return SizedBox(
           height: 200,
@@ -262,6 +362,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'gridview':
       case 'grid_view':
         return SizedBox(
           height: 200,
@@ -330,6 +431,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         );
 
       // Animation Widgets
+      case 'animatedcontainer':
       case 'animated_container':
         return _AnimatedContainerDemo();
 
@@ -353,6 +455,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
         return _FadeTransitionDemo();
 
       // Cupertino Widgets
+      case 'cupertinobutton':
       case 'cupertino_button':
         return CupertinoButton(
           color: CupertinoColors.activeBlue,
@@ -360,12 +463,14 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           child: const Text('Cupertino Button'),
         );
 
+      case 'cupertinoswitch':
       case 'cupertino_switch':
         return CupertinoSwitch(
           value: true,
           onChanged: (_) {},
         );
 
+      case 'cupertinoslider':
       case 'cupertino_slider':
         return SizedBox(
           width: 200,
@@ -375,6 +480,7 @@ class _WidgetPreviewState extends State<WidgetPreview> {
           ),
         );
 
+      case 'cupertinoactivityindicator':
       case 'cupertino_activity_indicator':
         return const CupertinoActivityIndicator(radius: 20);
 
